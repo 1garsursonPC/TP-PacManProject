@@ -1,7 +1,9 @@
-#include <string.h>
+#include <string>
 #include "NotifierCollision.h"
+#include "ObserverCollision.h"
 
-class Personnage :public NotifierCollision
+
+class Personnage :public NotifierCollision , ObserverCollision
 {
 private:
       int pos_x;
