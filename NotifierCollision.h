@@ -1,9 +1,9 @@
-# include 'ObserverCollision.h'
+#include "ObserverCollision.h"
 
 class NotifierCollision
 {
 public:
 	void addOberver(ObserverCollision obs);
-	void removeObserver(ObserverCollison obs);
+    void removeObserver(ObserverCollision obs);
 	void notify(int x, int y);
-}
+};
