@@ -4,8 +4,6 @@
 class Personnage :public NotifierCollision
 {
 private:
-      int pos_x;
-      int pos_y;
       std::string dplmt;
 
 public:
