@@ -1,13 +1,29 @@
-#include <string.h>
+#include <string>
+#include "personnage.h"
 
-void Personnage::void setDeplacement(std::string dplmt)
+void Personnage::setDeplacement(std::string dplmt)
 {
 	deplacement = dplmt;
-	notify(int x, int y);
+    notify(int x, int y);
 }
 
-void Personnage::void new_pos(int x, int y)
+void Personnage::new_pos(int x, int y)
 {
 	pos_x = x;
 	pos_y = y;
 }
+
+bool Personnage::test_collision(int x, int y)
+{
+  if (pos_x == x&&pos_y == y){
+      return true;
+  }
+  else {
+      return false;
+  }
+}
+void Personnage::collision(NotifierCollision& notifieur)
+{
+    std::cout<<"Warning ! Collision !"<<std::endl;
+}
+
