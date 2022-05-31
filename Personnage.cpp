@@ -29,11 +29,11 @@ void Personnage::collision(NotifierCollision& notifieur)
     std::cout<<"Warning ! Collision !"<<std::endl;
 }
 
-int Personnage::getPos_X(void){
+int& Personnage::getPos_X(void){
     return pos_x;
 }
 
-int Personnage::getPos_Y(void){
+int& Personnage::getPos_Y(void){
     return pos_y;
 }
 

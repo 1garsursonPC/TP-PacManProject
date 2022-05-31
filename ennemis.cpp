@@ -1,7 +1,8 @@
 #include <random>
 #include <ctime>
+#include "NotifierCollision.h"
 // TODO : remove the console print
-#include <stdio>
+#include <iostream>
 
 #include "ennemis.h"
 

@@ -3,7 +3,7 @@
 #include "ObserverCollision.h"
 
 
-class Personnage :public NotifierCollision , ObserverCollision
+class Personnage :public NotifierCollision , public ObserverCollision
 {
 private:
       int pos_x;
@@ -11,10 +11,11 @@ private:
       std::string dplmt;
 
 public:
+
       bool test_collision(int x, int y);
       void collision(NotifierCollision& notifieur);
       void setDeplacement(std::string dplmt);
       void new_pos(int x, int y);
-      int getPos_X(void);
-      int getPos_Y(void);
+      int& getPos_X(void);
+      int& getPos_Y(void);
 };

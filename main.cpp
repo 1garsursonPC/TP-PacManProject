@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 #include <personnage.h>
+#include "ennemis.h"
 
 class ExceptionSizeTab : std::exception
 {
@@ -14,10 +15,21 @@ bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x,
 
 int main(int argc, char *argv[])
 {
+   Clyde clyde1=Clyde();
+   Clyde clyde2=Clyde();
+   Personnage perso1=Personnage();
+
+   clyde1.addObserver(&perso1);
+   clyde2.addObserver(&perso1);
+   perso1.addObserver(&clyde1);
+   perso1.addObserver(&clyde2);
+
+
+
     std::string saisie;
     std::getline(std::cin,saisie);
     std::cout << "Vous avez saisi " << saisie << std::endl;
-    deplacer_personnage(Personnage.getPos_X(),Personnage.getPos_X(),saisie);
+    deplacer_personnage(perso1.getPos_X(),perso1.getPos_X(),saisie);
 
 
 
@@ -66,7 +78,7 @@ bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x,
 {
 	if (nb_ennemis < 0)
 	{
-		throw ExceptionSizeTab("nb_ennemis négatif");
+        throw ExceptionSizeTab();
 	}
 
 	for (unsigned i = 0; i < nb_ennemis; i++)
