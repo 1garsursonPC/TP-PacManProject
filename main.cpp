@@ -2,6 +2,8 @@
 #include <string>
 #include <QApplication>
 #include <exception>
+#include <iostream>
+#include <personnage.h>
 
 class ExceptionSizeTab : std::exception
 {
@@ -12,7 +14,10 @@ bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x,
 
 int main(int argc, char *argv[])
 {
-
+    std::string saisie;
+    std::getline(std::cin,saisie);
+    std::cout << "Vous avez saisi " << saisie << std::endl;
+    deplacer_personnage(Personnage.getPos_X(),Personnage.getPos_X(),saisie);
 
 
 
@@ -35,10 +40,22 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "This is fine" << std::endl;
 	}
-	return 0;
 
 
+
+
+
+    return 0;
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -63,22 +80,46 @@ bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x,
 
 
 bool deplacer_personnage(int &x,int &y ,std::string cmd){
+
+    const int xmin=0;
+    const int xmax=32;
+    const int ymin=0;
+    const int ymax=15;
+
+
     if(cmd=="RIGHT"){
-        x++;
+        if (x!=xmax){
+            x++;
+            return true;
+        }
+        else return false;
+
     }
     else if(cmd=="DOWN"){
-        y++;
+        if(y!=ymax){
+            y++;
+            return true;
+        }
+        else return false;
     }
     else if(cmd=="LEFT"){
-        x--;
+        if(x!=xmin){
+            x--;
+            return true;
+        }
+        else return false;
+
     }
     else if(cmd=="UP"){
-        y--;
+        if(y!=ymin){
+            y--;
+            return true;
+        }
+        else return false;
     }
     else if(cmd=="IDLE"){
-
+        return false;
     }
-
 
 }
 
