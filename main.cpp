@@ -1,16 +1,39 @@
 #include "mainwindow.h"
-
+#include <string>
 #include <QApplication>
 #include <exception>
+#include <iostream>
+#include <personnage.h>
+#include "ennemis.h"
 
 class ExceptionSizeTab : std::exception
 {
 };
 
+bool deplacer_personnage(int &x,int &y ,std::string cmd);
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y);
 
 int main(int argc, char *argv[])
 {
+   Clyde clyde1=Clyde();
+   Clyde clyde2=Clyde();
+   Personnage perso1=Personnage();
+
+   clyde1.addObserver(&perso1);
+   clyde2.addObserver(&perso1);
+   perso1.addObserver(&clyde1);
+   perso1.addObserver(&clyde2);
+
+
+
+    std::string saisie;
+    std::getline(std::cin,saisie);
+    std::cout << "Vous avez saisi " << saisie << std::endl;
+    deplacer_personnage(perso1.getPos_X(),perso1.getPos_X(),saisie);
+
+
+
+
 	try
 	{
 		detecter_collision({0, 45, -2}, {12, 3, 4}, 3, -2, 4);
@@ -29,15 +52,33 @@ int main(int argc, char *argv[])
 	{
 		std::cout << "This is fine" << std::endl;
 	}
-	return 0;
 
+
+
+
+
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x, int y)
 {
 	if (nb_ennemis < 0)
 	{
-		throw ExceptionSizeTab("nb_ennemis négatif");
+        throw ExceptionSizeTab();
 	}
 
 	for (unsigned i = 0; i < nb_ennemis; i++)
@@ -46,5 +87,51 @@ bool detecter_collision(int ennemis_x[], int ennemis_y[], int nb_ennemis, int x,
 			return true;
 	}
 	return false;
+}
+
+
+
+bool deplacer_personnage(int &x,int &y ,std::string cmd){
+
+    const int xmin=0;
+    const int xmax=32;
+    const int ymin=0;
+    const int ymax=15;
+
+
+    if(cmd=="RIGHT"){
+        if (x!=xmax){
+            x++;
+            return true;
+        }
+        else return false;
+
+    }
+    else if(cmd=="DOWN"){
+        if(y!=ymax){
+            y++;
+            return true;
+        }
+        else return false;
+    }
+    else if(cmd=="LEFT"){
+        if(x!=xmin){
+            x--;
+            return true;
+        }
+        else return false;
+
+    }
+    else if(cmd=="UP"){
+        if(y!=ymin){
+            y--;
+            return true;
+        }
+        else return false;
+    }
+    else if(cmd=="IDLE"){
+        return false;
+    }
+
 }
 

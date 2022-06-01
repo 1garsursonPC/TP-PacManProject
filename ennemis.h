@@ -1,6 +1,7 @@
-#include "ObserverCollision"
+#include "ObserverCollision.h"
+#include "NotifierCollision.h"
 
-class Ennemis : public ObserverCollision
+class Ennemis : public ObserverCollision, public NotifierCollision
 {
 public:
 	void virtual new_pos() = 0;
@@ -9,7 +10,7 @@ public:
 	void collision(NotifierCollision& notifieur);
 	bool test_collision(int x, int y);
 	
-private:
+protected:
 	int pos_x;
 	int pos_y;
 };

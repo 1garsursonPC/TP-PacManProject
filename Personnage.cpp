@@ -1,7 +1,9 @@
 #include <string>
 #include "personnage.h"
+#include <iostream>
+#include <NotifierCollision.h>
 
-void Personnage::setDeplacement(std::string dplmt)
+void Personnage::setDeplacement(std::string _newdplmt)
 {
     this->dplmt = dplmt;
     notify(pos_x, pos_y);
@@ -90,3 +92,11 @@ void Personnage::update_pos()
 {
     arrow_pressed(dplmt);
 }
+int& Personnage::getPos_X(void){
+    return pos_x;
+}
+
+int& Personnage::getPos_Y(void){
+    return pos_y;
+}
+

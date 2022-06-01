@@ -1,12 +1,31 @@
-#include 'NotifierCollision.h'
+#include "NotifierCollision.h"
+#include "personnage.h"
+#include "ObserverCollision.h"
 
-void notify(int x; int y)
+
+void NotifierCollision::notify(int x, int y)
 {
-	
-	bool verif = test_collision(int x; int y);
-	if (verif==true)
-	{
-        collision();
-	}
+    for(int i=0;i<bob.size();i++){
+        bool verif =bob[i]->test_collision(x,y);
+
+        if (verif==true)
+        {
+            bob[i]->collision(*this);
+        }
+    }
+
 
 }
+
+
+void NotifierCollision::addObserver(ObserverCollision* obs){
+    bob.push_back(obs);
+}
+
+
+
+void NotifierCollision::removeObserver(ObserverCollision* obs){
+    bob.pop_back();
+}
+
+
